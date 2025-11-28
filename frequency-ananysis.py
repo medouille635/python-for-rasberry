@@ -2,7 +2,7 @@ from collections import Counter
 
 def frequency_analysis_from_file(filename, language='french'):
     """
-    Perform frequency analysis on ciphertext from a file and suggest possible plaintext mappings.
+    Perform frequency analysis on ciphertext from a file and output suggested mappings.
 
     Args:
         filename (str): Path to the file containing the ciphertext.
@@ -30,19 +30,23 @@ def frequency_analysis_from_file(filename, language='french'):
     if language == 'english':
         # English letter frequencies (most common first)
         english_freq = 'ETAOINSHRDLCUMWFGYPBVKJXQZ'
-        print("\nSuggested mappings (English):")
+        print("\nSuggested mappings for Python dictionary (English):")
+        print("mappings = {")
         for cipher_letter, _ in sorted(freq.items(), key=lambda x: x[1], reverse=True):
             if len(english_freq) > 0:
-                print(f"{cipher_letter} → {english_freq[0]}")
+                print(f"    '{cipher_letter}': '{english_freq[0]}',")
                 english_freq = english_freq[1:]
+        print("}")
     elif language == 'french':
         # French letter frequencies (most common first)
         french_freq = 'ESAINTRULODCMPVÉQFGHJBXZYWK'
-        print("\nSuggested mappings (French):")
+        print("\nSuggested mappings for Python dictionary (French):")
+        print("mappings = {")
         for cipher_letter, _ in sorted(freq.items(), key=lambda x: x[1], reverse=True):
             if len(french_freq) > 0:
-                print(f"{cipher_letter} → {french_freq[0]}")
+                print(f"    '{cipher_letter}': '{french_freq[0]}',")
                 french_freq = french_freq[1:]
+        print("}")
     else:
         print("Unsupported language. Use 'english' or 'french'.")
 
